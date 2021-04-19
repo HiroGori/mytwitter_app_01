@@ -12,24 +12,34 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        >
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/dropify.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/dropify.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                    <a href="{{ url('') }}">
+                        Twitter
+                    </a>
                 </div>
             </header>
+            @include('layouts.navigation')
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
     </body>
