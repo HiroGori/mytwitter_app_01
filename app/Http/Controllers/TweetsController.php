@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tweet\Models;
+use App\Models\Tweet;
+use Auth;
 use Validator;
 
 class TweetsController extends Controller
@@ -38,10 +39,10 @@ class TweetsController extends Controller
     public function store(Request $request)
     {
         $params = $request->validate([
-            'user_id' => 'unsignedBigInteger|required',
             'body' => 'required|max:144',
             'image' => 'image',
-        ];
+        ]);
+        $params['user_id'] = Auth::id();
 /*
         $message = [
             'user_id.unsignedBigInteger' => 'System Error',
@@ -81,9 +82,9 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tweet_id)
     {
-        $tweet = Tweet::findOrFail($id);
+        $tweet = Tweet::findOrFail($tweet_id);
         return view('tweets.show', ['tweet' => $tweet]);
     }
 
@@ -93,9 +94,9 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($tweet_id)
     {
-        $tweet = Tweet::findOrFail($id);
+        $tweet = Tweet::findOrFail($tweet_id);
         return view('tweets.edit', ['tweet' => $tweet]);
     }
 
@@ -106,13 +107,13 @@ class TweetsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tweet_id)
     {
         $params = $request->validate([
-            'user_id' => 'unsignedBigInteger|required',
             'body' => 'required|max:144',
             'image' => 'image',
         ]);
+        $params['user_id'] = Auth::id();
         $tweet = Tweet::findOrFail($tweet_id);
         $tweet->fill($params)->save();
 

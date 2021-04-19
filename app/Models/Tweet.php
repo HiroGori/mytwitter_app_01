@@ -19,8 +19,18 @@ class Tweet extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function image()
+    {
+        return $this->belongsTo('App\Models\Image');
+    }
+
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
+    }
+
+    public function tweetLikes()
+    {
+        return $this->hasMany('App\Models\TweetLike');
     }
 }

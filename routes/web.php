@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TweetsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'TweetsController@index')->name('top');
+Route::resource('tweets', 'TweetsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
+Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+Route::resource('tweetlikes', 'TweetLikesController', ['only' => ['store']]);
+Route::resource('follows', 'FollowsController', ['only' => ['store']]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
