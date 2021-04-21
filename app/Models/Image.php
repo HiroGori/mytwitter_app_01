@@ -10,6 +10,7 @@ class image extends Model
     protected $fillable = [
         'tweet_id',
         'name',
+        'original_name',
         'type',
         'size',
     ];
