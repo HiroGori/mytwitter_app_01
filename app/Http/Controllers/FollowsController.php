@@ -12,10 +12,10 @@ class FollowsController extends Controller
     public function store(Request $request)
     {
         $params = $request->validate([
-            'followed_user_id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id',
         ]);
-        $params['user_id'] = Auth::id();
-        $user = User::findOrFail($params['followed_user_id']);
+        $params['follower_id'] = Auth::id();
+        $user = User::findOrFail($params['user_id']);
         $user->follows()->create($params);
         return redirect()->route('top');
     }
