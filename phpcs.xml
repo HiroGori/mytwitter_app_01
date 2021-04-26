@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom_PSR12">
+    <description>Custom ruleset Based on PSR12</description>
+
+    <rule ref="PSR12" />
+
+    <!-- 拡張子の指定(.php) -->
+    <arg name="extensions" value="php" />
+
+    <!-- 出力の色の指定 -->
+    <arg name="colors" />
+
+    <!-- 進捗の表示(-p) -->
+    <!-- エラー情報への違反したルールの表示(-s) -->
+    <arg value="ps" />
+
+    <!-- チェック対象外ディレクトリ(Laravelの場合) -->
+    <exclude-pattern>/bootstrap/</exclude-pattern>
+    <exclude-pattern>/config/</exclude-pattern>
+    <exclude-pattern>/database/</exclude-pattern>
+    <exclude-pattern>/node_modules/</exclude-pattern>
+    <exclude-pattern>/public/</exclude-pattern>
+    <exclude-pattern>/resources/</exclude-pattern>
+    <exclude-pattern>/routes/</exclude-pattern>
+    <exclude-pattern>/storage/</exclude-pattern>
+    <exclude-pattern>/vendor/</exclude-pattern>
+</ruleset>
